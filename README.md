@@ -38,4 +38,24 @@ A simple web application to manage lists and their items, built with Next.js and
    npm run dev
    ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+## Production Deployment
+
+To deploy in a production environment:
+
+1. **Build the Application**
+   ```bash
+   npm run build
+   ```
+
+2. **Set Environment Variables**
+   Ensure all production environment variables (e.g., `DATABASE_URL`, `NEXT_PUBLIC_API_URL`) are configured in your hosting environment.
+
+3. **Start the Production Server**
+   ```bash
+   npm run start
+   ```
+
+The application will run on port 3000 by default. Use a process manager like **PM2** to keep the server running:
+```bash
+npx pm2 start npm --name "list-manager" -- start
+```
