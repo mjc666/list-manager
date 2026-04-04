@@ -48,7 +48,7 @@ To deploy in a production environment:
    ```
 
 2. **Set Environment Variables**
-   Ensure all production environment variables (e.g., `DATABASE_URL`, `NEXT_PUBLIC_API_URL`) are configured in your hosting environment.
+   Ensure all production environment variables (e.g., `DATABASE_URL`) are configured in your hosting environment.
 
 3. **Start the Production Server**
    ```bash
