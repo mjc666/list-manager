@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "List Manager",
   description: "Manage your todo lists, shopping lists, and more.",
+  icons: {
+    icon: '/icons/favicon.png',
+    apple: '/icons/apple-touch-icon.png',
+  },
   viewport: {
     width: "device-width",
     initialScale: 1,
