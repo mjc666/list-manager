@@ -1,15 +1,42 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { List } from '@/types';
 import Link from 'next/link';
 import { createList, deleteList, setActiveList } from '@/app/actions';
 import { Plus, Trash2, X, Menu } from 'lucide-react';
-import { useState } from 'react';
 
 export default function Sidebar({ lists, activeListId }: { lists: List[]; activeListId?: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    let touchStartX = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const deltaX = touchEndX - touchStartX;
+
+      // Only open if swipe starts from the left edge (e.g., within the first 50px)
+      // and the swipe is significant enough (e.g., > 50px to the right)
+      if (touchStartX < 50 && deltaX > 50) {
+        setIsOpen(true);
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, []);
 
   return (
     <>
